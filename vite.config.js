@@ -4,19 +4,23 @@ import path from 'path'
 
 export default defineConfig({
   plugins: [react()],
-  css: {
-    preprocessorOptions: {
-      scss: {
-        includePaths: [path.resolve(__dirname, 'src/styles')]
+  base: '/', // Asegura que las rutas sean relativas
+  build: {
+    target: 'esnext',
+    outDir: 'dist',
+    assetsDir: 'assets',
+    sourcemap: false,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'vendor': ['react', 'react-dom', 'react-router-dom']
+        }
       }
-    }
-  },
-  resolve: {
-    alias: {
-      '@': path.resolve(__dirname, './src')
     }
   }
 })
+
+
 
 
 

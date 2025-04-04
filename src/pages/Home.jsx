@@ -2,174 +2,91 @@ import { useEffect } from 'react';
 import VehicleCard from '../components/VehicleCard';
 import ProductCard from '../components/ProductCard';
 import { useAppContext } from '../context/AppContext';
+import { vehiclesData } from '../data/vehiclesData';
 
 function Home() {
-  const { selectedCategory } = useAppContext();
-  
-  // Datos de ejemplo para vehículos
-  const vehicles = [
-    {
-      id: 1,
-      brand: 'Toyota',
-      model: 'Corolla',
-      year: 2019,
-      price: 15000,
-      mileage: 45000,
-      transmission: 'Automática',
-      fuel: 'Gasolina',
-      color: 'Blanco',
-      location: 'Madrid',
-      seller: {
-        name: 'Carlos Rodríguez',
-        phone: '+34 612 345 678',
-        whatsapp: '+34 612 345 678',
-        email: 'carlos@example.com'
-      },
-      images: [
-        'https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?q=80&w=800'
-      ],
-      featured: true,
-      recentlyAdded: true
-    },
-    {
-      id: 2,
-      brand: 'Volkswagen',
-      model: 'Vento',
-      year: 2020,
-      price: 13500,
-      mileage: 35000,
-      transmission: 'Manual',
-      fuel: 'Diésel',
-      color: 'Plata',
-      location: 'Barcelona',
-      seller: {
-        name: 'Laura García',
-        phone: '+34 623 456 789',
-        whatsapp: '+34 623 456 789',
-        email: 'laura@example.com'
-      },
-      images: [
-        'https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?q=80&w=800'
-      ],
-      featured: true,
-      recentlyAdded: true
-    },
-    {
-      id: 3,
-      brand: 'Kia',
-      model: 'Sportage',
-      year: 2021,
-      price: 22000,
-      mileage: 28000,
-      transmission: 'Automática',
-      fuel: 'Gasolina',
-      color: 'Negro',
-      location: 'Valencia',
-      seller: {
-        name: 'Miguel Sánchez',
-        phone: '+34 634 567 890',
-        whatsapp: '+34 634 567 890',
-        email: 'miguel@example.com'
-      },
-      images: [
-        'https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?q=80&w=800'
-      ],
-      featured: true,
-      recentlyAdded: false
-    },
-    {
-      id: 4,
-      brand: 'Toyota',
-      model: 'Etios',
-      year: 2018,
-      price: 9500,
-      mileage: 65000,
-      transmission: 'Manual',
-      fuel: 'Gasolina',
-      color: 'Rojo',
-      location: 'Sevilla',
-      seller: {
-        name: 'Ana Martínez',
-        phone: '+34 645 678 901',
-        whatsapp: '+34 645 678 901',
-        email: 'ana@example.com'
-      },
-      images: [
-        'https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?q=80&w=800'
-      ],
-      featured: false,
-      recentlyAdded: true
-    },
-    {
-      id: 5,
-      brand: 'Peugeot',
-      model: '308',
-      year: 2019,
-      price: 12800,
-      mileage: 42000,
-      transmission: 'Manual',
-      fuel: 'Diésel',
-      color: 'Azul',
-      location: 'Málaga',
-      seller: {
-        name: 'David López',
-        phone: '+34 656 789 012',
-        whatsapp: '+34 656 789 012',
-        email: 'david@example.com'
-      },
-      images: [
-        'https://images.unsplash.com/photo-1580273916550-e323be2ae537?q=80&w=800'
-      ],
-      featured: true,
-      recentlyAdded: false
-    }
-  ];
+  const { 
+    selectedCategory, 
+    vehicleFilters, 
+    productFilters 
+  } = useAppContext();
 
   // Datos de ejemplo para productos
   const products = [
     {
       id: 1,
-      name: 'iPhone 12 Pro',
+      name: 'PlayStation 5 Slim con disco',
       category: 'Electrónica',
-      price: 650,
-      condition: 'Casi nuevo',
-      location: 'Madrid',
+      price: 750000,
+      condition: 'Nuevo',
+      location: 'Almirante Brown',
       seller: {
-        name: 'Javier López',
-        phone: '+34 678 901 234',
-        whatsapp: '+34 678 901 234',
-        email: 'javier@example.com'
+        name: 'Lucas Martínez',
+        phone: '+54 11 5678-9012',
+        whatsapp: '+54 11 5678-9012',
+        email: 'lucas@example.com'
       },
       images: [
-        'https://images.unsplash.com/photo-1603891128711-11b4b03bb138?q=80&w=800'
+        'https://http2.mlstatic.com/D_NQ_NP_2X_941642-MLA74284744618_022024-F.webp'
       ],
       featured: true,
-      recentlyAdded: true
+      recentlyAdded: true,
+      specifications: {
+        modelo: 'PlayStation 5 Slim',
+        edición: 'Standard Edition',
+        almacenamiento: '1TB',
+        conectividad: 'Wi-Fi, Bluetooth, USB',
+        resolución: '4K',
+        contenido: 'Consola, 1 control DualSense, cables, base'
+      }
     },
     {
       id: 2,
-      name: 'Bicicleta de montaña Trek',
-      category: 'Deportes',
-      price: 450,
-      condition: 'Buen estado',
-      location: 'Barcelona',
+      name: 'Ron Cubano Eminente Reserva 7 años',
+      category: 'Bebidas',
+      price: 230000,
+      condition: 'Nuevo',
+      location: 'Almirante Brown',
       seller: {
-        name: 'Marta Ruiz',
-        phone: '+34 689 012 345',
-        whatsapp: '+34 689 012 345',
-        email: 'marta@example.com'
+        name: 'Carolina López',
+        phone: '+54 11 6789-0123',
+        whatsapp: '+54 11 6789-0123',
+        email: 'carolina@example.com'
       },
       images: [
-        'https://images.unsplash.com/photo-1532298229144-0ec0c57515c7?q=80&w=800'
+        'https://http2.mlstatic.com/D_NQ_NP_2X_941642-MLA74284744618_022024-F.webp'
       ],
       featured: true,
-      recentlyAdded: false
+      recentlyAdded: true,
+      specifications: {
+        tipo: 'Ron añejo',
+        origen: 'Cuba',
+        añejamiento: '7 años',
+        volumen: '700ml',
+        graduaciónAlcohólica: '40%',
+        presentación: 'Botella con estuche'
+      }
     }
   ];
 
-  // Filtrar vehículos destacados
-  const featuredVehicles = vehicles.filter(vehicle => vehicle.featured);
-  const featuredProducts = products.filter(product => product.featured);
+  // Filtrar vehículos según los filtros seleccionados
+  const filteredVehicles = vehiclesData.filter(vehicle => {
+    if (vehicleFilters.brand && vehicle.brand !== vehicleFilters.brand) {
+      return false;
+    }
+    if (vehicleFilters.type && vehicle.type !== vehicleFilters.type) {
+      return false;
+    }
+    return true;
+  });
+
+  // Filtrar productos según los filtros seleccionados
+  const filteredProducts = products.filter(product => {
+    if (productFilters.category && product.category !== productFilters.category) {
+      return false;
+    }
+    return true;
+  });
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -180,9 +97,9 @@ function Home() {
       {(selectedCategory === 'all' || selectedCategory === 'vehicles') && (
         <section className="featured-section">
           <div className="container">
-            <h2>Vehículos Destacados</h2>
-            <div className="card-grid">
-              {featuredVehicles.map(vehicle => (
+            <h2>Vehículos</h2>
+            <div className="vehicles-grid">
+              {filteredVehicles.map(vehicle => (
                 <VehicleCard key={vehicle.id} vehicle={vehicle} />
               ))}
             </div>
@@ -193,9 +110,9 @@ function Home() {
       {(selectedCategory === 'all' || selectedCategory === 'products') && (
         <section className="featured-section">
           <div className="container">
-            <h2>Productos Destacados</h2>
-            <div className="card-grid">
-              {featuredProducts.map(product => (
+            <h2>Productos</h2>
+            <div className="products-grid">
+              {filteredProducts.map(product => (
                 <ProductCard key={product.id} product={product} />
               ))}
             </div>

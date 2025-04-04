@@ -213,8 +213,10 @@ $border-color: #BDC3C7;     // Gris medio
   }
 }
 
-// Card Grid
-.card-grid {
+// Card Grid - Estandarización de tamaños
+.card-grid,
+.vehicles-grid,
+.products-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 1.5rem;
@@ -222,13 +224,18 @@ $border-color: #BDC3C7;     // Gris medio
   width: 100%;
 }
 
-// Vehicle Card
-.vehicle-card, .product-card {
+// Vehicle Card y Product Card - Estandarización
+.vehicle-card,
+.product-card {
   background-color: white;
   border-radius: $border-radius;
   overflow: hidden;
   box-shadow: $box-shadow;
   transition: $transition;
+  height: 100%;
+  max-height: 380px; // Altura máxima estandarizada
+  display: flex;
+  flex-direction: column;
 
   &:hover {
     transform: translateY(-5px);
@@ -236,12 +243,16 @@ $border-color: #BDC3C7;     // Gris medio
   }
 
   &-link {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
   }
 
   &-image {
     position: relative;
-    height: 200px;
+    height: 200px; // Altura fija para todas las imágenes
     overflow: hidden;
 
     img {
@@ -268,27 +279,56 @@ $border-color: #BDC3C7;     // Gris medio
   }
 
   &-content {
-    padding: 1.5rem;
+    padding: 1rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 
   &-title {
-    font-size: 1.25rem;
-    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
     color: $dark-color;
+    // Evitar que títulos largos rompan el diseño
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    line-height: 1.3;
   }
 
   &-details {
-    margin-bottom: 1.5rem;
-    color: #6b7173; // Versión más clara de $text-color
+    font-size: 0.9rem;
+    color: $text-color;
 
     p {
-      margin-bottom: 0.5rem;
+      margin: 0.25rem 0;
+      // Evitar que detalles largos rompan el diseño
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
   }
 
   &-footer {
-    display: flex;
-    justify-content: flex-end;
+    margin-top: 0.75rem;
+    
+    .btn-contact {
+      width: 100%;
+      padding: 0.5rem;
+      background-color: $primary-color;
+      color: white;
+      border: none;
+      border-radius: $border-radius;
+      cursor: pointer;
+      transition: $transition;
+
+      &:hover {
+        background-color: darken($primary-color, 10%);
+      }
+    }
   }
 }
 
@@ -759,9 +799,31 @@ footer {
     padding: 0 1.5rem;
   }
   
-  .vehicles-grid {
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1.5rem;
+  .vehicles-grid,
+  .products-grid {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1rem;
+  }
+
+  .vehicle-card,
+  .product-card {
+    max-height: 360px;
+
+    &-image {
+      height: 180px;
+    }
+
+    &-content {
+      padding: 0.75rem;
+    }
+
+    &-title {
+      font-size: 1rem;
+    }
+
+    &-details {
+      font-size: 0.85rem;
+    }
   }
 }
 
@@ -773,9 +835,23 @@ footer {
     padding: 0 1rem;
   }
   
-  .vehicles-grid {
-    grid-template-columns: 1fr;
-    gap: 1rem;
+  .vehicles-grid,
+  .products-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 0.75rem;
+  }
+
+  .vehicle-card,
+  .product-card {
+    max-height: 340px;
+
+    &-image {
+      height: 160px;
+    }
+
+    &-content {
+      padding: 0.5rem;
+    }
   }
 }
 
@@ -987,5 +1063,179 @@ body {
   }
 }
 
+// Estilos para la galería de imágenes
+.image-gallery {
+  .main-image {
+    width: 100%;
+    height: 500px;
+    border-radius: $border-radius;
+    overflow: hidden;
+    margin-bottom: 1rem;
 
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .thumbnail-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 0.5rem;
+    
+    .thumbnail {
+      height: 80px;
+      border-radius: $border-radius;
+      overflow: hidden;
+      cursor: pointer;
+      opacity: 0.7;
+      transition: $transition;
+
+      &:hover {
+        opacity: 0.9;
+      }
+
+      &.active {
+        opacity: 1;
+        border: 2px solid $primary-color;
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+}
+
+// Estilos para las páginas de detalle
+.detail-page {
+  padding: 2rem 0;
+  background-color: #f8f9fa;
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  .detail-header {
+    margin-bottom: 2rem;
+    
+    h1 {
+      font-size: 2rem;
+      color: $dark-color;
+      margin-bottom: 0.5rem;
+    }
+
+    .price {
+      font-size: 1.75rem;
+      color: $primary-color;
+      font-weight: bold;
+    }
+  }
+
+  .detail-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+
+    @media (max-width: $tablet) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .detail-info {
+    background: white;
+    padding: 1.5rem;
+    border-radius: $border-radius;
+    box-shadow: $box-shadow;
+
+    h2 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: $dark-color;
+      border-bottom: 1px solid $border-color;
+      padding-bottom: 0.5rem;
+    }
+
+    .specs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+
+      .spec-item {
+        .spec-label {
+          font-weight: bold;
+          color: $text-color;
+          display: block;
+          margin-bottom: 0.25rem;
+        }
+
+        .spec-value {
+          color: $dark-color;
+        }
+      }
+    }
+
+    .description {
+      margin-bottom: 2rem;
+      line-height: 1.6;
+      color: $text-color;
+    }
+  }
+
+  .seller-info {
+    background: white;
+    padding: 1.5rem;
+    border-radius: $border-radius;
+    box-shadow: $box-shadow;
+
+    h3 {
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+      color: $dark-color;
+    }
+
+    .contact-methods {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+
+      .contact-button {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.75rem;
+        border-radius: $border-radius;
+        border: none;
+        cursor: pointer;
+        transition: $transition;
+        font-weight: 500;
+
+        &.whatsapp {
+          background-color: #25D366;
+          color: white;
+        }
+
+        &.phone {
+          background-color: $primary-color;
+          color: white;
+        }
+
+        &.email {
+          background-color: $dark-color;
+          color: white;
+        }
+
+        &:hover {
+          transform: translateY(-2px);
+        }
+      }
+    }
+  }
+}
 

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import ImageGallery from '../components/ImageGallery';
 import ContactInfo from '../components/ContactInfo';
+import { vehiclesData } from '../data/vehiclesData';
 
 const VehicleDetail = () => {
   const { id } = useParams();
@@ -9,93 +10,12 @@ const VehicleDetail = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Simulamos la carga de datos desde una API
     const fetchVehicle = () => {
-      // Datos de ejemplo
-      const vehicles = [
-        {
-          id: 1,
-          brand: 'Toyota',
-          model: 'Corolla',
-          year: 2019,
-          price: 15000,
-          mileage: 45000,
-          transmission: 'Automática',
-          fuel: 'Gasolina',
-          color: 'Blanco',
-          location: 'Madrid',
-          seller: {
-            name: 'Carlos Rodríguez',
-            phone: '+34 612 345 678',
-            whatsapp: '+34 612 345 678',
-            email: 'carlos@example.com'
-          },
-          description: 'Toyota Corolla en excelente estado. Único dueño, mantenimiento al día, nunca ha sido chocado. Interior impecable, aire acondicionado funcionando perfectamente.',
-          features: ['Aire acondicionado', 'Bluetooth', 'Cámara trasera', 'Control de crucero', 'Asientos de cuero'],
-          images: [
-            'https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?q=80&w=800',
-            'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=800',
-            'https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?q=80&w=800'
-          ]
-        },
-        {
-          id: 2,
-          brand: 'Honda',
-          model: 'Civic',
-          year: 2018,
-          price: 14000,
-          mileage: 60000,
-          transmission: 'Manual',
-          fuel: 'Gasolina',
-          color: 'Azul',
-          location: 'Barcelona',
-          seller: {
-            name: 'Ana Martínez',
-            phone: '+34 623 456 789',
-            whatsapp: '+34 623 456 789',
-            email: 'ana@example.com'
-          },
-          description: 'Honda Civic en buen estado. Segundo dueño, todos los servicios realizados en concesionario oficial. Neumáticos nuevos, frenos recién cambiados.',
-          features: ['Aire acondicionado', 'Bluetooth', 'Pantalla táctil', 'Llantas de aleación', 'Faros LED'],
-          images: [
-            'https://images.unsplash.com/photo-1555215695-3004980ad54e?q=80&w=800',
-            'https://images.unsplash.com/photo-1580273916550-e323be2ae537?q=80&w=800',
-            'https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=800'
-          ]
-        },
-        {
-          id: 3,
-          brand: 'Ford',
-          model: 'Focus',
-          year: 2020,
-          price: 16500,
-          mileage: 30000,
-          transmission: 'Automática',
-          fuel: 'Diésel',
-          color: 'Gris',
-          location: 'Valencia',
-          seller: {
-            name: 'Miguel Sánchez',
-            phone: '+34 634 567 890',
-            whatsapp: '+34 634 567 890',
-            email: 'miguel@example.com'
-          },
-          description: 'Ford Focus prácticamente nuevo. Mantenimiento al día, interior en perfecto estado. Bajo consumo y excelente rendimiento en carretera.',
-          features: ['Navegador GPS', 'Sensores de aparcamiento', 'Control de crucero adaptativo', 'Asistente de mantenimiento de carril', 'Climatizador bizona'],
-          images: [
-            'https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?q=80&w=800',
-            'https://images.unsplash.com/photo-1494976388531-d1058494cdd8?q=80&w=800',
-            'https://images.unsplash.com/photo-1511919884226-fd3cad34687c?q=80&w=800'
-          ]
-        }
-      ];
-
-      const foundVehicle = vehicles.find(v => v.id === parseInt(id));
-      
+      const foundVehicle = vehiclesData.find(v => v.id === parseInt(id));
       setTimeout(() => {
         setVehicle(foundVehicle);
         setLoading(false);
-      }, 500); // Simulamos un pequeño retraso
+      }, 500);
     };
 
     fetchVehicle();
@@ -199,3 +119,4 @@ const VehicleDetail = () => {
 };
 
 export default VehicleDetail;
+

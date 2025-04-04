@@ -1,25 +1,20 @@
-import { createContext, useState, useContext } from 'react';
+import { createContext, useContext, useState } from 'react';
 
-// Crear el contexto
 const AppContext = createContext();
 
-// Hook personalizado para usar el contexto
 export const useAppContext = () => useContext(AppContext);
 
-// Proveedor del contexto
 export const AppProvider = ({ children }) => {
-  const [selectedCategory, setSelectedCategory] = useState('all'); // Cambiado a 'all' por defecto
+  const [selectedCategory, setSelectedCategory] = useState('all');
   const [vehicleFilters, setVehicleFilters] = useState({
-    brand: 'Todos',
-    type: 'Todos'
+    brand: '',
+    type: ''
   });
   const [productFilters, setProductFilters] = useState({
-    category: 'Todos'
+    category: ''
   });
 
-  // Datos de ejemplo para marcas y tipos de vehículos
   const brands = [
-    'Todos',
     'Toyota',
     'Honda',
     'Ford',
@@ -32,7 +27,6 @@ export const AppProvider = ({ children }) => {
   ];
 
   const vehicleTypes = [
-    'Todos',
     'Sedán',
     'Hatchback',
     'SUV',
@@ -42,7 +36,6 @@ export const AppProvider = ({ children }) => {
   ];
 
   const productCategories = [
-    'Todos',
     'Electrónica',
     'Hogar',
     'Deportes',
@@ -50,22 +43,29 @@ export const AppProvider = ({ children }) => {
     'Juguetes'
   ];
 
-  // Función para filtrar vehículos
   const filterVehicles = (brand, type) => {
-    setVehicleFilters({ brand, type });
+    setVehicleFilters({
+      brand: brand || '',
+      type: type || ''
+    });
   };
 
-  // Función para filtrar productos
   const filterProducts = (category) => {
-    setProductFilters({ category });
+    setProductFilters({
+      category: category || ''
+    });
   };
 
-  // Función para cambiar entre vehículos y otros productos
   const changeCategory = (category) => {
     setSelectedCategory(category);
+    // Resetear filtros al cambiar de categoría
+    if (category === 'vehicles') {
+      setVehicleFilters({ brand: '', type: '' });
+    } else if (category === 'products') {
+      setProductFilters({ category: '' });
+    }
   };
 
-  // Valores que se proporcionarán a través del contexto
   const value = {
     selectedCategory,
     changeCategory,
@@ -80,5 +80,4 @@ export const AppProvider = ({ children }) => {
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 };
-
 

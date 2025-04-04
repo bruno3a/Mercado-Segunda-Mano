@@ -36,9 +36,9 @@ const FilterBar = () => {
               value={vehicleFilters.brand} 
               onChange={handleVehicleFilterChange}
             >
-              <option value="">Selecciona una marca</option>
-              {brands.map((brand, index) => (
-                <option key={index} value={brand}>{brand}</option>
+              <option value="">Todas las marcas</option>
+              {brands.map((brand) => (
+                <option key={brand} value={brand}>{brand}</option>
               ))}
             </select>
             <select 
@@ -46,12 +46,11 @@ const FilterBar = () => {
               value={vehicleFilters.type} 
               onChange={handleVehicleFilterChange}
             >
-              <option value="">Selecciona un tipo</option>
-              {vehicleTypes.map((type, index) => (
-                <option key={index} value={type}>{type}</option>
+              <option value="">Todos los tipos</option>
+              {vehicleTypes.map((type) => (
+                <option key={type} value={type}>{type}</option>
               ))}
             </select>
-            <button type="button">Buscar</button>
           </div>
         )}
         {selectedCategory === 'products' && (
@@ -61,12 +60,11 @@ const FilterBar = () => {
               value={productFilters.category} 
               onChange={handleProductFilterChange}
             >
-              <option value="">Selecciona una categoría</option>
-              {productCategories.map((category, index) => (
-                <option key={index} value={category}>{category}</option>
+              <option value="">Todas las categorías</option>
+              {productCategories.map((category) => (
+                <option key={category} value={category}>{category}</option>
               ))}
             </select>
-            <button type="button">Buscar</button>
           </div>
         )}
       </div>
@@ -75,4 +73,3 @@ const FilterBar = () => {
 };
 
 export default FilterBar;
-

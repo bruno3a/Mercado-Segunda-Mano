@@ -46,6 +46,10 @@ const Layout = ({ children }) => {
             </ul>
           </div>
         </nav>
+        <div className="info-banner">
+          <i className="fas fa-info-circle"></i>
+          Bienvenido a tu marketplace de confianza. Aquí encontrarás vehículos y productos de segunda mano verificados por nuestra comunidad.
+        </div>
         {isHomePage && <FilterBar />}
       </header>
       {children}

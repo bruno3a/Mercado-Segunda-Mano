@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { getImageUrl } from '../utils/imageUtils';
 
 const ProductCard = ({ product }) => {
   return (
@@ -6,7 +7,7 @@ const ProductCard = ({ product }) => {
       <Link to={`/producto/${product.id}`} className="product-card-link">
         <div className="product-card-image">
           <img
-            src={product.images[0] || 'https://via.placeholder.com/400x300?text=No+Image'}
+            src={getImageUrl(product.images[0])}
             alt={product.name}
           />
           <div className="product-card-price">${product.price.toLocaleString()}</div>
@@ -28,3 +29,4 @@ const ProductCard = ({ product }) => {
 };
 
 export default ProductCard;
+

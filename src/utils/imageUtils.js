@@ -1,6 +1,6 @@
 export const getImageUrl = (imagePath) => {
   if (!imagePath) {
-    return '/src/assets/images/placeholder.svg';
+    return '/placeholder.svg';
   }
 
   // Si la imagen comienza con http o https, es una URL externa
@@ -8,6 +8,19 @@ export const getImageUrl = (imagePath) => {
     return imagePath;
   }
 
-  // Si no, asumimos que es una imagen local en src/assets/images
-  return `/src/assets/images/${imagePath}`;
+  // Si la imagen comienza con /, asumimos que es una ruta absoluta
+  if (imagePath.startsWith('/')) {
+    return imagePath;
+  }
+
+  // Importar dinámicamente las imágenes desde src/assets/images
+  try {
+    // Usar la función de importación dinámica de Vite
+    const imageUrl = new URL(`../assets/images/${imagePath}`, import.meta.url).href;
+    return imageUrl;
+  } catch (error) {
+    console.error('Error loading image:', error);
+    return '/placeholder.svg';
+  }
 };
+

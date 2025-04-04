@@ -38,11 +38,11 @@ export const vehiclesData = [
     },
     description: 'KIA SPORTAGE 2009 2.0 4x2 - EXCELENTE ESTADO. Único dueño, todos los servicios realizados en concesionario oficial. VTV vigente hasta 2025. Cubiertas con 15.000km de uso. Batería nueva. Kit de distribución cambiado a los 250.000km. Aire acondicionado funcionando perfectamente. Documentación al día, lista para transferir. Se acepta permuta de menor valor.',
     images: [
-      'https://http2.mlstatic.com/D_NQ_NP_2X_754811-MLA74025365123_012024-F.webp',
-      'https://http2.mlstatic.com/D_NQ_NP_2X_982901-MLA74025365125_012024-F.webp',
-      'https://http2.mlstatic.com/D_NQ_NP_2X_686643-MLA74025365127_012024-F.webp',
-      'https://http2.mlstatic.com/D_NQ_NP_2X_614458-MLA74025365129_012024-F.webp',
-      'https://http2.mlstatic.com/D_NQ_NP_2X_859120-MLA74025365131_012024-F.webp'
+      '/src/assets/images/vehicles/kia-sportage/kia-sportage-2009-front.webp',
+      '/src/assets/images/vehicles/kia-sportage/kia-sportage-2009-side.webp',
+      '/src/assets/images/vehicles/kia-sportage/kia-sportage-2009-back.webp',
+      '/src/assets/images/vehicles/kia-sportage/kia-sportage-2009-interior.webp',
+      '/src/assets/images/vehicles/kia-sportage/kia-sportage-2009-engine.webp'
     ],
     featured: false,
     recentlyAdded: true,
@@ -181,6 +181,7 @@ export const vehiclesData = [
     }
   }
 ];
+
 
 
 

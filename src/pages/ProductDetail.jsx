@@ -11,46 +11,42 @@ const ProductDetail = () => {
   useEffect(() => {
     // Simulamos la carga de datos desde una API
     const fetchProduct = () => {
-      // Datos de ejemplo
+      // Datos de ejemplo actualizados
       const products = [
         {
           id: 1,
-          name: 'iPhone 12 Pro',
+          name: 'PlayStation 5 Slim con disco',
           category: 'Electrónica',
-          price: 650,
-          condition: 'Casi nuevo',
-          location: 'Madrid',
+          price: 750000,
+          condition: 'Nuevo',
+          location: 'Almirante Brown',
           seller: {
-            name: 'Javier López',
-            phone: '+34 678 901 234',
-            whatsapp: '+34 678 901 234',
-            email: 'javier@example.com'
+            name: 'Lucas Martínez',
+            phone: '+54 11 5678-9012',
+            whatsapp: '+54 11 5678-9012',
+            email: 'lucas@example.com'
           },
-          description: 'iPhone 12 Pro de 128GB en color grafito. Comprado hace 1 año, en perfecto estado. Incluye cargador y funda original. Batería al 92% de capacidad.',
+          description: 'PlayStation 5 Slim edición con lector de disco. Nueva y sellada. Incluye un control DualSense, cables y base.',
           images: [
-            'https://images.unsplash.com/photo-1603891128711-11b4b03bb138?q=80&w=800',
-            'https://images.unsplash.com/photo-1592750475338-74b7b21085ab?q=80&w=800',
-            'https://images.unsplash.com/photo-1591337676887-a217a6970a8a?q=80&w=800'
+            'https://http2.mlstatic.com/D_NQ_NP_734451-MLA81264945648_122024-O.webp'
           ]
         },
         {
           id: 2,
-          name: 'Bicicleta de montaña Trek',
-          category: 'Deportes',
-          price: 450,
-          condition: 'Buen estado',
-          location: 'Barcelona',
+          name: 'Ron Cubano Havana Club 7 Años',
+          category: 'Bebidas',
+          price: 250000,
+          condition: 'Nuevo',
+          location: 'Almirante Brown',
           seller: {
-            name: 'Marta Ruiz',
-            phone: '+34 689 012 345',
-            whatsapp: '+34 689 012 345',
-            email: 'marta@example.com'
+            name: 'Ana García',
+            phone: '+54 11 4567-8901',
+            whatsapp: '+54 11 4567-8901',
+            email: 'ana@example.com'
           },
-          description: 'Bicicleta de montaña Trek Marlin 6. Talla M. Cambios Shimano, frenos de disco hidráulicos. Usada pero en buen estado. Ideal para rutas de montaña.',
+          description: 'Ron Havana Club 7 Años, importado directamente de Cuba. Botella de 750ml, sellada y en perfectas condiciones.',
           images: [
-            'https://images.unsplash.com/photo-1532298229144-0ec0c57515c7?q=80&w=800',
-            'https://images.unsplash.com/photo-1485965120184-e220f721d03e?q=80&w=800',
-            'https://images.unsplash.com/photo-1576435728678-68d0fbf94e91?q=80&w=800'
+            'https://http2.mlstatic.com/D_NQ_NP_804037-MLA81535336453_122024-O.webp'
           ]
         }
       ];

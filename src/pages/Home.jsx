@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import VehicleCard from '../components/VehicleCard';
 import ProductCard from '../components/ProductCard';
 import { useAppContext } from '../context/AppContext';
@@ -11,8 +11,10 @@ function Home() {
     productFilters 
   } = useAppContext();
 
-  // Datos de ejemplo para productos
-  const products = [
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  const mockProducts = [
     {
       id: 1,
       name: 'PlayStation 5 Slim con disco',
@@ -20,54 +22,25 @@ function Home() {
       price: 750000,
       condition: 'Nuevo',
       location: 'Almirante Brown',
-      seller: {
-        name: 'Lucas Martínez',
-        phone: '+54 11 5678-9012',
-        whatsapp: '+54 11 5678-9012',
-        email: 'lucas@example.com'
-      },
-      images: [
-        'https://http2.mlstatic.com/D_NQ_NP_2X_941642-MLA74284744618_022024-F.webp'
-      ],
-      featured: true,
-      recentlyAdded: true,
-      specifications: {
-        modelo: 'PlayStation 5 Slim',
-        edición: 'Standard Edition',
-        almacenamiento: '1TB',
-        conectividad: 'Wi-Fi, Bluetooth, USB',
-        resolución: '4K',
-        contenido: 'Consola, 1 control DualSense, cables, base'
-      }
+      images: ['https://http2.mlstatic.com/D_NQ_NP_734451-MLA81264945648_122024-O.webp']
     },
     {
       id: 2,
-      name: 'Ron Cubano Eminente Reserva 7 años',
+      name: 'Ron Cubano Havana Club 7 Años',
       category: 'Bebidas',
-      price: 230000,
+      price: 250000,
       condition: 'Nuevo',
       location: 'Almirante Brown',
-      seller: {
-        name: 'Carolina López',
-        phone: '+54 11 6789-0123',
-        whatsapp: '+54 11 6789-0123',
-        email: 'carolina@example.com'
-      },
-      images: [
-        'https://http2.mlstatic.com/D_NQ_NP_2X_941642-MLA74284744618_022024-F.webp'
-      ],
-      featured: true,
-      recentlyAdded: true,
-      specifications: {
-        tipo: 'Ron añejo',
-        origen: 'Cuba',
-        añejamiento: '7 años',
-        volumen: '700ml',
-        graduaciónAlcohólica: '40%',
-        presentación: 'Botella con estuche'
-      }
+      images: ['https://http2.mlstatic.com/D_NQ_NP_804037-MLA81535336453_122024-O.webp']
     }
   ];
+
+  useEffect(() => {
+    setTimeout(() => {
+      setProducts(mockProducts);
+      setLoading(false);
+    }, 500);
+  }, []);
 
   // Filtrar vehículos según los filtros seleccionados
   const filteredVehicles = vehiclesData.filter(vehicle => {

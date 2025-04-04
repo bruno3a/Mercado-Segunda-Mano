@@ -19,9 +19,6 @@ const ProductCard = ({ product }) => {
             <p><strong>Estado:</strong> {product.condition}</p>
             <p><strong>Ubicación:</strong> {product.location}</p>
           </div>
-          <div className="product-card-footer">
-            <button className="btn-contact">Contactar</button>
-          </div>
         </div>
       </Link>
     </div>

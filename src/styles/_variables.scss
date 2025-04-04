@@ -1,0 +1,46 @@
+// Colors
+$primary-color: #6c5ce7;
+$secondary-color: #a29bfe;
+$accent-color: #fd79a8;
+$text-color: #2d3436;
+$light-color: #f5f6fa;
+$dark-color: #2d3436;
+
+// Spacing
+$spacing-unit: 8px;
+
+// Breakpoints más precisos
+$mobile: 480px;
+$tablet: 768px;
+$desktop: 1024px;
+$large-desktop: 1200px;
+
+// Media queries como mixins para facilitar su uso
+@mixin mobile {
+  @media (max-width: $mobile) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (max-width: $tablet) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (max-width: $desktop) {
+    @content;
+  }
+}
+
+// Transitions
+$transition: all 0.3s ease;
+
+// Shadows
+$box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+
+// Border
+$border-radius: 8px;
+
+
